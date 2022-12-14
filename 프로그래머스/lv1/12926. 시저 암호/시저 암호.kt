@@ -1,11 +1,14 @@
 class Solution {
     fun solution(s: String, n: Int): String {
-        return s.map {
-            when {
-                it.isLowerCase() -> 'a' + (it + n - 'a') % 26
-                it.isUpperCase() -> 'A' + (it + n - 'A') % 26
-                else -> ' '
-            }
-        }.joinToString("")
+        var result = ""
+        val range = 'z' - 'a' + 1
+
+        for (c in s) {
+            result +=
+                if (c == ' ') c
+                else if (c.isUpperCase()) 'A' + (c + n - 'A') % range
+                else 'a' + (c + n - 'a') % range
+        }
+        return result
     }
 }
